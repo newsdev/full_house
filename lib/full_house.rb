@@ -31,7 +31,7 @@ module FullHouse
         response["perf_hour"] = nycb[:hour]
         results << response
       end
-      CSV.open("nycb_#{start.day}_#{start.hour}.csv", "w", :write_headers=> true, :headers => ["day_checked","hour_checked","performance_id","performance_date","performance_hour","seat_type","price_range","seats"]) do |csv|
+      CSV.open("nycb_#{start.day.to_s}_#{start.hour.to_s}.csv", "w", :write_headers=> true, :headers => ["day_checked","hour_checked","performance_id","performance_date","performance_hour","seat_type","price_range","seats"]) do |csv|
         results.each do |result|
           result['sections'].each do |section|
             csv << [result["day"], result["hour"], result["perf_id"], result["perf_date"], result["perf_hour"], section["name"], section["price"], section['message']]
@@ -62,7 +62,7 @@ module FullHouse
         end
         results << response
       end
-      CSV.open("bam_#{start.day}_#{start.hour}.csv", "w", :write_headers=> true, :headers => ["day_checked","hour_checked","performance_id","performance_date","performance_hour","seat_type","price_range","seats"]) do |csv|
+      CSV.open("bam_#{start.day.to_s}_#{start.hour.to_s}.csv", "w", :write_headers=> true, :headers => ["day_checked","hour_checked","performance_id","performance_date","performance_hour","seat_type","price_range","seats"]) do |csv|
         results.flatten.each do |result|
           csv << [result["day"], result["hour"], result["perf_id"], result["perf_date"], result["perf_hour"], result["ScreenDescription"], result["MinPrice"].to_s+"-"+result["MaxPrice"].to_s, result['AvailableSeats']]
         end
