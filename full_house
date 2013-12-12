@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'full_house'
+
+FullHouse::Parser.parse_and_output
